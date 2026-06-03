@@ -14,4 +14,6 @@ public interface TaskRepository extends MongoRepository<Task, String> {
     List<Task> findByUserIdAndStatus(String userId, Status status);
     List<Task> findByUserIdAndDeadLineBefore(String userId, LocalDate deadline);
     List<Task> findByUserIdAndStatusAndDeadLineBefore(String userId, Status status, LocalDate deadline);
+
+    void deleteByUserId(String userId);
 }

@@ -1,6 +1,7 @@
 package com.learning.TodoList.services;
 
 import com.learning.TodoList.entities.User;
+import com.learning.TodoList.repositories.TaskRepository;
 import com.learning.TodoList.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -11,6 +12,9 @@ import org.springframework.stereotype.Service;
 public class UserService {
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private TaskRepository taskRepository;
 
     private static final PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
@@ -52,6 +56,8 @@ public class UserService {
     }
 
     public void deleteUser(String email){
-        userRepository.deleteByEmail(email);
+        User user = findUser(email);
+        taskRepository.deleteByUserId(user.getId());
+        userRepository.deleteById(user.getId());
     }
 }
