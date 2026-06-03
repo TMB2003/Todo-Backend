@@ -1,10 +1,10 @@
 spring:
   application:
-    name: TodoList\
+    name: TodoList
   data:
     mongodb:
       auto-index-creation: true
-      uri: mongodb+srv://Taha:Tah%402003@cluster0.iiw7pvb.mongodb.net/todolist?appName=Cluster0
+      uri: ${MONGODB_URI}
       database: todoList
 
 
@@ -12,4 +12,4 @@ server:
   port: 3000
 
 jwt:
-  secret: TaK+HaV^uvCHEFsEVfypW#7g9^k*Z8$V
+  secret: ${JWT_SECRET:your-secret-key-here}
