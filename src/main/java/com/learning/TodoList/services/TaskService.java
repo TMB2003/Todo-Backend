@@ -7,8 +7,11 @@ import com.learning.TodoList.repositories.TaskRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.Optional;
+import java.util.Collections;
+import java.util.List;
+
 
 @Service
 public class TaskService {
@@ -19,16 +22,12 @@ public class TaskService {
     private UserService userService;
 
     public Task createTask(Task task, String email){
-        task.setEntryTime(LocalDateTime.now());
         User user = userService.findUser(email);
         if(user == null) return null;
 
         task.setUserId(user.getId());
         task.setStatus(Status.PENDING);
         taskRepository.save(task);
-
-        user.getTaskList().add(task);
-        userService.saveUser(user);
 
         return task;
     }
@@ -43,15 +42,18 @@ public class TaskService {
 
     public Task taskCompleted(String id) {
         Task task = findTask(id);
-        if(task == null) return task;
+        if(task == null) return null;
 
         task.setStatus((task.getStatus() == Status.PENDING) ? Status.COMPLETE : Status.PENDING);
         return saveTask(task);
     }
 
-    public Task updateTask(Task newtask, String id){
+    public Task updateTask(Task newtask, String id, String email){
         Task oldTask = findTask(id);
-        if(oldTask == null) return oldTask;
+        if(oldTask == null) return null;
+
+        User user = userService.findUser(email);
+        if(!oldTask.getUserId().equals(user.getId())) return null;
 
         if(newtask.getName() != null) oldTask.setName(newtask.getName());
         if(newtask.getDescription() != null) oldTask.setDescription(newtask.getDescription());
@@ -61,15 +63,30 @@ public class TaskService {
         return saveTask(oldTask);
     }
 
-    public boolean deleteTask(String id, String email){
+    public void deleteTask(String id, String email){
         Task task = findTask(id);
-        if(task == null) return false;
+        if(task == null) return;
 
         User user = userService.findUser(email);
-        if(user == null) return false;
+        if(user == null) return;
 
-        Boolean removed = user.getTaskList().removeIf(x -> x.getId().equals(id));
-        if(removed) userService.saveUser(user);
-        return removed;
+        taskRepository.deleteById(id);
+    }
+
+    public List<Task> getAllTasks(String email, Status status, LocalDate deadline){
+        User user = userService.findUser(email);
+        if(user == null) return Collections.emptyList();
+
+        List<Task> all = taskRepository.findByUserId(user.getId());
+        if(status != null && deadline != null){
+            all = taskRepository.findByUserIdAndStatusAndDeadLineBefore(user.getId(), status, deadline);
+        }
+        else if(status != null){
+            all = taskRepository.findByUserIdAndStatus(user.getId(), status);
+        }
+        else if(deadline != null){
+            all = taskRepository.findByUserIdAndDeadLineBefore(user.getId(), deadline);
+        }
+        return all;
     }
 }

@@ -5,7 +5,9 @@ import com.learning.TodoList.enums.Status;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
+import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDate;
@@ -20,9 +22,11 @@ public class Task {
     @NonNull
     private String name;
     private String description;
+
     @NonNull
     private String userId;
     private Status status;
-    private LocalDate DeadLine;
-    private LocalDateTime EntryTime;
+    private LocalDate deadLine;
+    @CreatedDate
+    private LocalDateTime entryTime;
 }

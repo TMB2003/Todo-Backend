@@ -24,7 +24,4 @@ public class User {
     private String email;
     @NonNull
     private String password;
-
-    @DBRef
-    private List<Task> taskList = new ArrayList<>();
 }
