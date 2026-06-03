@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: TodoList\
+  data:
+    mongodb:
+      auto-index-creation: true
+      uri: mongodb+srv://Taha:Tah%402003@cluster0.iiw7pvb.mongodb.net/todolist?appName=Cluster0
+      database: todoList
+
+
+server:
+  port: 3000

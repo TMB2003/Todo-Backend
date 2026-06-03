@@ -1,0 +1,15 @@
+com/learning/TodoList/services/UserService.class
+com/learning/TodoList/entities/User.class
+com/learning/TodoList/services/UserDetailsServiceImpl.class
+com/learning/TodoList/repositories/TaskRepository.class
+com/learning/TodoList/TodoListApplication.class
+com/learning/TodoList/utils/JWTUtils.class
+com/learning/TodoList/controllers/TaskController.class
+com/learning/TodoList/config/SpringSecurity.class
+com/learning/TodoList/controllers/UserController.class
+com/learning/TodoList/entities/Task.class
+com/learning/TodoList/enums/Status.class
+com/learning/TodoList/repositories/UserRepository.class
+com/learning/TodoList/controllers/PublicController.class
+com/learning/TodoList/filters/JwtFilter.class
+com/learning/TodoList/services/TaskService.class

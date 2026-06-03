@@ -1,0 +1,15 @@
+/Users/taha/Desktop/TodoList/src/main/java/com/learning/TodoList/TodoListApplication.java
+/Users/taha/Desktop/TodoList/src/main/java/com/learning/TodoList/config/SpringSecurity.java
+/Users/taha/Desktop/TodoList/src/main/java/com/learning/TodoList/controllers/PublicController.java
+/Users/taha/Desktop/TodoList/src/main/java/com/learning/TodoList/controllers/TaskController.java
+/Users/taha/Desktop/TodoList/src/main/java/com/learning/TodoList/controllers/UserController.java
+/Users/taha/Desktop/TodoList/src/main/java/com/learning/TodoList/entities/Task.java
+/Users/taha/Desktop/TodoList/src/main/java/com/learning/TodoList/entities/User.java
+/Users/taha/Desktop/TodoList/src/main/java/com/learning/TodoList/enums/Status.java
+/Users/taha/Desktop/TodoList/src/main/java/com/learning/TodoList/filters/JwtFilter.java
+/Users/taha/Desktop/TodoList/src/main/java/com/learning/TodoList/repositories/TaskRepository.java
+/Users/taha/Desktop/TodoList/src/main/java/com/learning/TodoList/repositories/UserRepository.java
+/Users/taha/Desktop/TodoList/src/main/java/com/learning/TodoList/services/TaskService.java
+/Users/taha/Desktop/TodoList/src/main/java/com/learning/TodoList/services/UserDetailsServiceImpl.java
+/Users/taha/Desktop/TodoList/src/main/java/com/learning/TodoList/services/UserService.java
+/Users/taha/Desktop/TodoList/src/main/java/com/learning/TodoList/utils/JWTUtils.java
