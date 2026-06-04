@@ -40,6 +40,7 @@ public class PublicController {
             String jwt = jwtUtils.generateToken(newUser.getEmail());
             return new ResponseEntity<>(jwt, HttpStatus.CREATED);
         } catch (Exception e) {
+            log.error("Registration failed: " , e);
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
     }
