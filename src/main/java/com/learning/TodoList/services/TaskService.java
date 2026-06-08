@@ -53,6 +53,7 @@ public class TaskService {
         if(oldTask == null) return null;
 
         User user = userService.findUser(email);
+        if(user == null) return null;
         if(!oldTask.getUserId().equals(user.getId())) return null;
 
         if(newtask.getName() != null) oldTask.setName(newtask.getName());

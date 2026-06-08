@@ -16,24 +16,16 @@ public class UserService {
     @Autowired
     private TaskRepository taskRepository;
 
-    private static final PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     public User createUser(User user){
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-        userRepository.save(user);
-        return user;
+        return saveUser(user);
     }
 
     public User findUser(String email){
         return userRepository.findByEmail(email);
-    }
-
-    public boolean authenticate(String email, String password){
-        User user = userRepository.findByEmail(email);
-        if (user == null) {
-            return false;
-        }
-        return passwordEncoder.matches(password, user.getPassword());
     }
 
     public User updateUserByName(String email, User newUser){
